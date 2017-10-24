@@ -1,0 +1,65 @@
+<?php
+print_r($_POST)
+?>
+
+
+<html>
+        <head>
+                <div class="imgcontainer">
+                        <img src="smb.png" alt="Avatar" class="avatar">
+                </div>
+            <link rel="stylesheet" type="text/css" href="stylesheet.css">
+            <title>SMB</title>
+            <link rel="icon" type="image/png" href="smblogo.png" />
+        </head> 
+        <body>
+        <form  style="border:3px solid #f1f1f1" action="" method="POST">
+            <h1 align="center" style="font-size:50px">Registration Form</h1>
+            <div class="containerB">
+              <label><b>User Id</b></label>
+              <input type="text" placeholder="Enter User Id" name="uid" required>
+              <p></p>
+              <label><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" name="pass" required>
+              <p></p>
+              <label><b>Store Name</b></label>
+              <input type="text" placeholder="Enter Store Name" name="sname" required>
+              <p></p>
+              <label><b>Category</b></label>
+              <input type="text" placeholder="Enter category" name="category" required>
+              <p></p>
+              <label><b>Enter The Address</b></label>
+              <form>
+                <input id="searchTextField" type="text" size="50" placeholder="Enter a location" autocomplete="on" runat="server" />  
+                <input type="hidden" id="city2" name="city2" />
+                <p></p>
+        </form>
+            <label><b>Position</b></label>  
+            <input type="text" id="pos">
+            <div class="sbmt">
+              <div>
+              <button style="width:100%,float:left" type="submit">Submit</button>
+            </div>
+            </div>
+            </div>
+          </form>
+    </body> 
+</html>
+
+<script src="http://maps.googleapis.com/maps/api/js?libraries=places" type="text/javascript"></script>
+
+<script type="text/javascript">
+    function initialize() {
+        var input = document.getElementById('searchTextField');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            var place = autocomplete.getPlace();
+            var lat = place.geometry.location.lat();
+            var long = place.geometry.location.lng();
+            document.getElementById('pos').value = lat+","+long;
+            //alert(place.name);
+           // alert(place.address_components[0].long_name);
+        });
+    }
+    google.maps.event.addDomListener(window, 'load', initialize); 
+</script>
